@@ -1,4 +1,5 @@
 import PaddingX from '@/Layouts/PaddingX';
+import { About as AboutType } from '@/types/resources';
 import { cn } from '@heroui/react';
 import { Head } from '@inertiajs/react';
 import { useEffect, useState } from 'react';
@@ -11,7 +12,12 @@ import Home from './Sections/Home';
 import Stats from './Sections/Stats/Stats';
 import Testimonials from './Sections/Testimonials/Testimonials';
 
-export default function Landing() {
+type WelcomeProps = {
+    about: AboutType;
+};
+
+export default function Landing(props: WelcomeProps) {
+    const { about } = props;
     const [activeSection, setActiveSection] = useState<string>('');
 
     useEffect(() => {
@@ -73,7 +79,7 @@ export default function Landing() {
                 </section>
 
                 <section id={sectionIds.about} className={cn(commonSectionCss)}>
-                    <About />
+                    <About about={about} />
                 </section>
 
                 <section

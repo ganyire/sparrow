@@ -11,14 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('abouts', function (Blueprint $table) {
+        Schema::create('features', function (Blueprint $table) {
             $table->id();
-            $table->string('founder');
-            $table->string('profile_url')->nullable();
-            $table->string('profile_path')->nullable();
-            $table->string('phone')->nullable();
-            $table->unsignedInteger('years_of_experience')->nullable();
-            $table->text('brief')->nullable();
+            $table->string('name');
+            $table->string('title')->nullable();
+            $table->text('description')->nullable();
+            $table->json('list')->nullable();
+            $table->string('featured_image')->nullable();
             $table->timestamps();
         });
     }
@@ -28,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('abouts');
+        Schema::dropIfExists('features');
     }
 };

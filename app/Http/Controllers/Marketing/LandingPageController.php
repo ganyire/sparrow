@@ -2,6 +2,7 @@
 namespace App\Http\Controllers\Marketing;
 
 use App\Http\Controllers\Controller;
+use App\Models\About;
 use Illuminate\Http\Request;
 
 class LandingPageController extends Controller
@@ -11,6 +12,9 @@ class LandingPageController extends Controller
      */
     public function __invoke(Request $request)
     {
-        return inertia("Marketing/Landing/index");
+        $about = About::query()->first();
+        return inertia("Marketing/Landing/index", [
+            'about' => $about,
+        ]);
     }
 }

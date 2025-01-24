@@ -2,6 +2,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\About;
 use Illuminate\Http\Request;
 
 class VCreateAboutController extends Controller
@@ -11,6 +12,7 @@ class VCreateAboutController extends Controller
      */
     public function __invoke(Request $request)
     {
-        return inertia('CreateAbout');
+        $about = About::query()->first();
+        return inertia('CreateAbout', compact('about'));
     }
 }

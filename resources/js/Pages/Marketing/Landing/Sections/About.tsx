@@ -1,4 +1,5 @@
 import PaddingX from '@/Layouts/PaddingX';
+import { About as AboutType } from '@/types/resources';
 import { Check } from 'lucide-react';
 import { BsFillTelephoneFill } from 'react-icons/bs';
 
@@ -11,7 +12,12 @@ const list = [
     'Ut enim ad minim veniam',
 ];
 
-const About = () => {
+type AboutProps = {
+    about: AboutType;
+};
+
+const About = (props: AboutProps) => {
+    const { about } = props;
     return (
         <PaddingX>
             <div className="grid grid-cols-11 gap-x-28">
@@ -22,12 +28,7 @@ const About = () => {
                     <h1 className="text-[1.75rem] font-bold">
                         Voluptas enim suscipit temporibus
                     </h1>
-                    <p>
-                        Sed ut perspiciatis unde omnis iste natus error sit
-                        voluptatem accusantium doloremque laudantium, totam rem
-                        aperiam, eaque ipsa quae ab illo inventore veritatis et
-                        quasi architecto beatae vitae dicta sunt explicabo.
-                    </p>
+                    <p>{about?.brief}</p>
 
                     <div className="grid grid-cols-2 gap-x-2 gap-y-4 pt-4">
                         {list.map((item, index) => (
@@ -49,12 +50,12 @@ const About = () => {
                     <div className="flex items-center justify-between pt-6">
                         <div className="flex items-center gap-2">
                             <img
-                                src="/images/avatar-1.webp"
+                                src={about?.profile_url}
                                 alt="avatar"
                                 className="h-14 w-14 rounded-full"
                             />
                             <div>
-                                <p className="font-bold">John Doe</p>
+                                <p className="font-bold">{about?.founder}</p>
                                 <p className="text-sm text-primary-dark">
                                     CEO & Founder
                                 </p>
@@ -71,7 +72,7 @@ const About = () => {
                                     Call us anytime
                                 </span>
                                 <span className="text-lg font-bold text-foreground-dark">
-                                    +123 456-789
+                                    {about?.phone}
                                 </span>
                             </p>
                         </div>
@@ -93,7 +94,9 @@ const About = () => {
                             />
                         </div>
                         <div className="absolute bottom-[5%] right-[5%] min-w-[200px] animate-float rounded-xl bg-primary-dark p-[1.5rem] text-center text-white [animation-duration:2s] [animation-timing-function:ease-in-out]">
-                            <h3 className="text-2xl font-bold">15+ Years</h3>
+                            <h3 className="text-2xl font-bold">
+                                {about?.years_of_experience}+ Years
+                            </h3>
                             <p>Of experience in business service</p>
                         </div>
                     </div>

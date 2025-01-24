@@ -2,6 +2,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rules\File;
 
 class CreateAboutRequest extends FormRequest
 {
@@ -10,7 +11,7 @@ class CreateAboutRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -25,6 +26,7 @@ class CreateAboutRequest extends FormRequest
             'years_of_experience' => ['required', 'integer'],
             'phone'               => 'required|max:255',
             'brief'               => ['required', 'max:500'],
+            'profile_url'         => ['sometimes', 'nullable', File::image()->max(1024)],
         ];
     }
 }

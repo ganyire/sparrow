@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\CreateAboutController;
 use App\Http\Controllers\Admin\VCreateAboutController;
 use App\Http\Controllers\Marketing\LandingPageController;
 use App\Http\Controllers\ProfileController;
@@ -28,6 +29,8 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/about', VCreateAboutController::class)
         ->name('about.create');
+    Route::post('/about', CreateAboutController::class)
+        ->name('about.store');
 });
 
 require __DIR__ . '/auth.php';

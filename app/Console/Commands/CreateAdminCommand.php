@@ -27,11 +27,11 @@ class CreateAdminCommand extends Command
      */
     public function handle()
     {
+        $this->line('Create Super Admin user');
+
         $name     = text('Enter full name', required: true);
         $email    = text('Enter email address', required: true);
         $password = password(label: 'Enter password', required: true);
-
-        $this->line('Creating admin user...');
 
         $user = User::create([
             'name'     => $name,
@@ -39,6 +39,6 @@ class CreateAdminCommand extends Command
             'password' => bcrypt($password),
         ]);
 
-        $this->line('Admin user created successfully.');
+        $this->line("User {$user->name} created successfully");
     }
 }
