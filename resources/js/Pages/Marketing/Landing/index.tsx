@@ -5,11 +5,9 @@ import { useEffect, useState } from 'react';
 import { sectionIds } from '../menu';
 import ExtendedMenu from './Navigation/ExtendedMenu';
 import About from './Sections/About';
-import Contact from './Sections/Contact';
 import Features from './Sections/Features/Features';
+import Footer from './Sections/Footer';
 import Home from './Sections/Home';
-import Pricing from './Sections/Pricing';
-import Services from './Sections/Services';
 import Stats from './Sections/Stats/Stats';
 import Testimonials from './Sections/Testimonials/Testimonials';
 
@@ -49,7 +47,7 @@ export default function Landing() {
     const commonSectionCss = 'min-h-[calc(100vh-140px)] pt-[150px] ';
 
     return (
-        <main className="bg-white">
+        <main className="relative bg-white">
             <Head title="Home" />
 
             <div className="fixed left-0 top-0 z-20 w-full">
@@ -60,8 +58,17 @@ export default function Landing() {
                 </PaddingX>
             </div>
 
-            <div>
-                <section id={sectionIds.home} className={cn(commonSectionCss)}>
+            {/* linear-gradient(135deg,_color-mix(in_srgb,_var(--accent-color),_transparent_95%)_50%,_color-mix(in_srgb,_var(--accent-color),_transparent_98%)_25%,_transparent_50%) */}
+
+            <div className="">
+                <section
+                    id={sectionIds.home}
+                    className={cn(
+                        commonSectionCss,
+                        'bg-secondary',
+                        '[background:linear-gradient(135deg,_color-mix(in_srgb,_rgb(13,131,253,1),_transparent_95%)_50%,_color-mix(in_srgb,_rgb(13,131,253,1),_transparent_98%)_25%,_transparent_50%)]',
+                    )}
+                >
                     <Home />
                 </section>
 
@@ -77,33 +84,37 @@ export default function Landing() {
                     {/* <div className="mt-20">
                         <Brands />
                     </div> */}
-                    <div className="mt-20 bg-[#f3f9ff] py-20">
+                    <div className="mt-20 bg-secondary py-20">
                         <Testimonials />
                     </div>
-                    <div className="mt-20 py-10">
+                    <div className="mt-20 py-20">
                         <Stats />
                     </div>
                 </section>
 
-                <section
+                {/* <section
                     id={sectionIds.services}
                     className={cn(commonSectionCss)}
                 >
                     <Services />
-                </section>
+                </section> */}
 
-                <section
+                {/* <section
                     id={sectionIds.pricing}
                     className={cn(commonSectionCss)}
                 >
                     <Pricing />
-                </section>
+                </section> */}
 
-                <section
+                {/* <section
                     id={sectionIds.contact}
                     className={cn(commonSectionCss)}
                 >
                     <Contact />
+                </section> */}
+
+                <section>
+                    <Footer />
                 </section>
             </div>
         </main>

@@ -22,51 +22,66 @@ const ExtendedMenu = (props: ExtendedMenuProps) => {
             <span className="text-2xl">iLanding</span>
 
             <div className="flex items-center justify-center gap-4">
-                {menuItems.map((item) => {
-                    if (item.id === 'dropdown') {
-                        return (
-                            <Dropdown key={item.id}>
-                                <DropdownTrigger>
-                                    <Button
-                                        variant="light"
-                                        className="text-md hover:!text-primary-dark flex items-center font-sans text-gray-700 hover:!bg-white"
-                                    >
-                                        Dropdown
-                                        <ChevronDown className="stroke-1" />
-                                    </Button>
-                                </DropdownTrigger>
+                {menuItems
+                    .filter(
+                        (item) =>
+                            !['services', 'pricing', 'contact'].includes(
+                                item.id,
+                            ),
+                    )
+                    .map((item) => {
+                        if (item.id === 'dropdown') {
+                            return (
+                                <Dropdown key={item.id}>
+                                    <DropdownTrigger>
+                                        <Button
+                                            variant="light"
+                                            className="text-md flex items-center font-sans text-gray-700 hover:!bg-white hover:!text-primary-dark"
+                                        >
+                                            Dropdown
+                                            <ChevronDown className="stroke-1" />
+                                        </Button>
+                                    </DropdownTrigger>
 
-                                <DropdownMenu aria-label="actions">
-                                    <DropdownItem key="dd1">
-                                        Dropdown 1
-                                    </DropdownItem>
-                                    <DropdownItem key="dd2">
-                                        Dropdown 2
-                                    </DropdownItem>
-                                    <DropdownItem key="dd2">
-                                        Dropdown 2
-                                    </DropdownItem>
-                                </DropdownMenu>
-                            </Dropdown>
+                                    <DropdownMenu aria-label="actions">
+                                        <DropdownItem key="dd1">
+                                            Dropdown 1
+                                        </DropdownItem>
+                                        <DropdownItem key="dd2">
+                                            Dropdown 2
+                                        </DropdownItem>
+                                        <DropdownItem key="dd2">
+                                            Dropdown 2
+                                        </DropdownItem>
+                                    </DropdownMenu>
+                                </Dropdown>
+                            );
+                        }
+                        return (
+                            <Link
+                                key={item.id}
+                                href={`#${item.id}`}
+                                className={cn('hover:!text-primary-dark', {
+                                    'text-primary-dark':
+                                        activeSection === item.id,
+                                })}
+                            >
+                                {item.label}
+                            </Link>
                         );
-                    }
-                    return (
-                        <Link
-                            key={item.id}
-                            href={`#${item.id}`}
-                            className={cn('hover:!text-primary-dark', {
-                                'text-primary-dark': activeSection === item.id,
-                            })}
-                        >
-                            {item.label}
-                        </Link>
-                    );
-                })}
+                    })}
+
+                <Link href="/login" className="hover:text-primary-dark">
+                    Login
+                </Link>
+                <Link href="/register" className="hover:text-primary-dark">
+                    Register
+                </Link>
             </div>
 
             <Link
                 href="#about"
-                className="bg-primary-dark flex h-[35px] w-28 items-center justify-center rounded-full text-white"
+                className="flex h-[35px] w-28 items-center justify-center rounded-full bg-primary-dark text-white"
             >
                 Get Started
             </Link>

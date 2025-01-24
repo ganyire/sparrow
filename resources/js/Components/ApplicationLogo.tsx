@@ -1,6 +1,7 @@
 import { SVGAttributes } from 'react';
 
 export default function ApplicationLogo(props: SVGAttributes<SVGElement>) {
+    return <h3 className="text-2xl">iLanding</h3>;
     return (
         <svg
             {...props}
